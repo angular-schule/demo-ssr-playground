@@ -1,0 +1,6 @@
+<h3>{{ item.title }} <small><code>{{ item.id }}</code></small></h3>
+<p>
+  {{ item.description }}
+</p>
+
+<a [routerLink]="['/item', item.id]">Go to details page</a>
