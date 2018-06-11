@@ -1,3 +1,6 @@
+// THIS IS A MODIFIED COPY FROM
+// https://github.com/angular/angular/blob/6.0.4/packages/platform-server/src/utils.ts
+
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
