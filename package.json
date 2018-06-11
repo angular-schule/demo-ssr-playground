@@ -23,6 +23,7 @@
     "@angular/router": "^6.0.3",
     "@nguniversal/express-engine": "^6.0.0",
     "core-js": "^2.5.4",
+    "promise-serial": "^0.1.5",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
