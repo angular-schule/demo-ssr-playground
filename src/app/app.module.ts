@@ -15,7 +15,7 @@ import { DetailsComponent } from './details/details.component';
     DetailsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
   providers: [],
