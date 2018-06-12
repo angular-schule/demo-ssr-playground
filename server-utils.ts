@@ -65,7 +65,7 @@ the server-rendered app can be properly bootstrapped into a client app.`);
           const platformState = platform.injector.get(PlatformState);
           const router: Router = moduleRef.injector.get(Router);
 
-          const renderedRoutes = urls.map(url => {
+          const renderedRoutes = urls.map(url => () => {
             return router.navigateByUrl(url)
               .then(() => {
                 applicationRef.tick();
