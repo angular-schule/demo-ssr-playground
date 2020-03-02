@@ -1,0 +1,15 @@
+<ng-container *ngIf="pizza$ | async as pizza">
+  <h2>
+    {{ pizza.name }}
+    <ng-container *ngFor="let x repeat pizza.rating">⭐️</ng-container>
+  </h2>
+
+  <p>
+    {{ pizza.description }}
+  </p>
+
+  <div class="price">{{ pizza.price | currency:'EUR' }}</div>
+</ng-container>
+
+
+<a routerLink="/dashboard" class="btn">Back to dashboard</a>

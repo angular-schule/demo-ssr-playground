@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Arial, Helvetica;
+  padding: 0;
+  margin: 0;
+}
+
+$btncol: rgb(193, 4, 4);
+
+a.btn {
+  border-radius: 5px;
+  background: $btncol;
+  padding: .6em;
+  color: white;
+  text-decoration: none;
+  font-size: .9em;
+
+  &:hover {
+    background: lighten($btncol, 3%)
+  }
+}

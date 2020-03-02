@@ -1,0 +1,5 @@
+<h4>🍕 {{ pizza.name }} <small><code>#{{ pizza.id }}</code></small></h4>
+<p>{{ pizza.description }}</p>
+
+<a [routerLink]="['/pizza', pizza.id]" class="btn">Go to details page</a>
+

@@ -1,27 +1,78 @@
-# SsrPlayground
+## Playground for SSR and Prerendering with Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+### Installing and building
 
-## Development server
+Install all dependencies as usual.
+Just to make sure everything is fine, run the project locally:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+npm install
+ng serve
+```
 
-## Code scaffolding
+If you want, you can take a look at the HTML source code in the browser. It should show the typical `index.html` skeleton with an almost empty `<app-root></app-root>` element.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+We then need separate builds for client and server.
 
-## Build
+```bash
+# Client
+ng build --prod
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Server
+ng run ssr-playground:server:production
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# OR both together
+npm run build:ssr
+```
 
-## Running end-to-end tests
+You should now find a `dist` folder with two sub-directories:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+- dist
+  - ssr-playground
+    - browser
+    - server
+```
 
-## Further help
+We can take a look at the server now!
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Compiling the server for SSR
+
+The server part is a TypeScript program for Node.js in the `server.ts` file.
+It is already bundled with the application in `dist/ssr-playground/server/main.js` after running `npm run build:ssr`.
+
+
+### Running Server-side rendering
+
+Run the Express server with live server-side rendering:
+
+```bash
+node dist/ssr-playground/server/main
+# OR
+npm run serve:ssr
+```
+
+Open your browser at [http://localhost:4000](http://localhost:4000) to see it in action. When you show the source code in the browser you should see the server-side rendered HTML.
+
+
+#### Pre-rendering
+
+
+```bash
+npm run prerender
+```
+
+You should now find some subfolders in the `dist/browser` directory, according to the routes of the application.
+Run a local web server there, e.g. `angular-http-server` or `http-server`:
+
+```bash
+cd dist/ssr-playground/browser
+npx http-server
+```
+
+Open your browser at [http://localhost:8080](http://localhost:8080).
+This should be blazing fast because it just shows the prerendered pages without doing any rendering at runtime.
+The Angular application bundles will kick in later and take over the static page.
+
+

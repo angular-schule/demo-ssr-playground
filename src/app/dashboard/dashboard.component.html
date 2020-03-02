@@ -1,0 +1,7 @@
+<p>
+  This app is running on the <strong>{{ platform }}</strong>  platform.
+</p>
+
+<div class="container">
+  <app-pizza *ngFor="let p of pizzas$ | async" [pizza]="p"></app-pizza>
+</div>
