@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "ssr-playground": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ssr-playground",
+            "outputPath": "dist/ssr-playground/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -121,8 +121,73 @@
               "devServerTarget": "ssr-playground:serve:production"
             }
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ssr-playground/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "ssr-playground:build",
+            "serverTarget": "ssr-playground:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ssr-playground:build:production",
+              "serverTarget": "ssr-playground:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ssr-playground:build:production",
+            "serverTarget": "ssr-playground:server:production",
+            "routes": [
+              "/",
+              "/dashboard",
+              "/imprint",
+              "/info",
+              "/pizza/1",
+              "/pizza/2",
+              "/pizza/3",
+              "/pizza/4",
+              "/pizza/5",
+              "/pizza/6",
+              "/pizza/7"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "noBuild": true,
+            "cname": "ssrpizza.schnell-mal.de"
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ssr-playground"
 }

@@ -24,7 +24,7 @@ import { InfoComponent } from './info/info.component';
     InfoComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule
   ],
